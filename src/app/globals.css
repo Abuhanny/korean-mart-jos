@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Warm, premium palette: cream background, deep jade primary,
+       gochujang-red accent. Distinct from generic e-commerce blue. */
+    --background: 32 40% 97%;
+    --foreground: 20 25% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 20 25% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 25% 12%;
+
+    --primary: 156 45% 22%;        /* deep jade green */
+    --primary-foreground: 40 60% 97%;
+
+    --secondary: 14 65% 46%;       /* gochujang red-orange */
+    --secondary-foreground: 40 60% 97%;
+
+    --accent: 40 70% 92%;
+    --accent-foreground: 20 25% 12%;
+
+    --muted: 30 25% 93%;
+    --muted-foreground: 20 10% 40%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 30 20% 88%;
+    --input: 30 20% 88%;
+    --ring: 156 45% 22%;
+
+    --radius: 1rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv11", "salt";
+  }
+  ::selection {
+    @apply bg-primary/20;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .section {
+    @apply py-16 md:py-24;
+  }
+  .container-narrow {
+    @apply mx-auto max-w-3xl px-4;
+  }
+}

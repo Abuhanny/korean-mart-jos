@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { settingsSchema, type SettingsInput } from "@/lib/validations/admin";
 import { updateSettings } from "@/lib/actions/admin-settings";
+import { ImageUpload } from "@/components/admin/image-upload";
 import type { BusinessSettings } from "@/lib/types";
 
 const DAYS: (keyof BusinessSettings["opening_hours"])[] = [
@@ -131,10 +132,12 @@ export function SettingsForm({ settings, isAdmin }: { settings: BusinessSettings
             <Label>Hero Subtitle</Label>
             <Textarea {...register("hero_subtitle")} className="mt-1.5" />
           </div>
-          <div>
-            <Label>Hero Image URL</Label>
-            <Input {...register("hero_image_url")} className="mt-1.5" />
-          </div>
+          <ImageUpload
+            label="Hero Image"
+            folder="homepage"
+            value={watch("hero_image_url")}
+            onChange={(url) => setValue("hero_image_url", url ?? "")}
+          />
           <div className="flex items-center justify-between rounded-xl bg-accent/40 p-3">
             <span className="text-sm">Show promo banner</span>
             <Switch checked={watch("promo_banner_active")} onCheckedChange={(v) => setValue("promo_banner_active", v)} />

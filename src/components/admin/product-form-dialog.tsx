@@ -14,6 +14,7 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { productSchema, type ProductInput } from "@/lib/validations/admin";
 import { createProduct, updateProduct } from "@/lib/actions/admin-products";
+import { ImageUpload } from "@/components/admin/image-upload";
 import { slugify } from "@/lib/utils";
 import type { Product, Category } from "@/lib/types";
 
@@ -141,13 +142,12 @@ export function ProductFormDialog({
               <Input type="number" {...register("stock_quantity")} className="mt-1.5" placeholder="Leave blank if untracked" />
             </div>
           </div>
-          <div>
-            <Label>Image URL</Label>
-            <Input {...register("image_url")} className="mt-1.5" placeholder="https://..." />
-            <p className="mt-1 text-xs text-muted-foreground">
-              Upload the image to Supabase Storage (product-images bucket) and paste the public URL here.
-            </p>
-          </div>
+          <ImageUpload
+            label="Product Image"
+            folder="products"
+            value={watch("image_url")}
+            onChange={(url) => setValue("image_url", url ?? "")}
+          />
 
           <div className="grid grid-cols-2 gap-3 rounded-xl bg-accent/40 p-3">
             <ToggleField label="In Stock" name="in_stock" watch={watch} setValue={setValue} />

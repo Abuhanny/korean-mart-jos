@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { promotionSchema, type PromotionInput } from "@/lib/validations/admin";
 import { createPromotion, updatePromotion, deletePromotion } from "@/lib/actions/admin-promotions";
+import { ImageUpload } from "@/components/admin/image-upload";
 import type { Promotion } from "@/lib/types";
 
 export function PromotionFormDialog({ promotion, trigger }: { promotion?: Promotion; trigger?: React.ReactNode }) {
@@ -77,10 +78,12 @@ export function PromotionFormDialog({ promotion, trigger }: { promotion?: Promot
             <Label>Discount Text</Label>
             <Input {...register("discount_text")} className="mt-1.5" placeholder="Buy 2 Get 1 Free" />
           </div>
-          <div>
-            <Label>Image URL</Label>
-            <Input {...register("image_url")} className="mt-1.5" />
-          </div>
+          <ImageUpload
+            label="Image"
+            folder="promotions"
+            value={watch("image_url")}
+            onChange={(url) => setValue("image_url", url ?? "")}
+          />
           <div className="grid grid-cols-2 gap-3">
             <div>
               <Label>Start Date</Label>

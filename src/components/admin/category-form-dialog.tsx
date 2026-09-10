@@ -12,6 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { categorySchema, type CategoryInput } from "@/lib/validations/admin";
 import { createCategory, updateCategory } from "@/lib/actions/admin-categories";
+import { ImageUpload } from "@/components/admin/image-upload";
 import { slugify } from "@/lib/utils";
 import type { Category } from "@/lib/types";
 
@@ -86,10 +87,12 @@ export function CategoryFormDialog({ category, trigger }: { category?: Category;
             <Label>Description</Label>
             <Textarea {...register("description")} className="mt-1.5" />
           </div>
-          <div>
-            <Label>Image URL (optional)</Label>
-            <Input {...register("image_url")} className="mt-1.5" />
-          </div>
+          <ImageUpload
+            label="Category Image (optional)"
+            folder="categories"
+            value={watch("image_url")}
+            onChange={(url) => setValue("image_url", url ?? "")}
+          />
           <div>
             <Label>Sort Order</Label>
             <Input type="number" {...register("sort_order")} className="mt-1.5" />

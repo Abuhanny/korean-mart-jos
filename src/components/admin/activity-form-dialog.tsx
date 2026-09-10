@@ -14,6 +14,7 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { activitySchema, type ActivityInput } from "@/lib/validations/admin";
 import { createActivity, updateActivity } from "@/lib/actions/admin-activities";
+import { ImageUpload } from "@/components/admin/image-upload";
 import { slugify } from "@/lib/utils";
 import type { Activity } from "@/lib/types";
 
@@ -89,10 +90,12 @@ export function ActivityFormDialog({ activity, trigger }: { activity?: Activity;
             <Label>Description</Label>
             <Textarea {...register("description")} className="mt-1.5" />
           </div>
-          <div>
-            <Label>Image URL</Label>
-            <Input {...register("image_url")} className="mt-1.5" />
-          </div>
+          <ImageUpload
+            label="Image"
+            folder="activities"
+            value={watch("image_url")}
+            onChange={(url) => setValue("image_url", url ?? "")}
+          />
           <div className="grid grid-cols-3 gap-3">
             <div>
               <Label>Date</Label>

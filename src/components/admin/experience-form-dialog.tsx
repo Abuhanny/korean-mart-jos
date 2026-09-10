@@ -13,6 +13,7 @@ import { Switch } from "@/components/ui/switch";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { experienceSchema, type ExperienceInput } from "@/lib/validations/admin";
 import { createExperience, updateExperience } from "@/lib/actions/admin-experiences";
+import { ImageUpload } from "@/components/admin/image-upload";
 import { slugify } from "@/lib/utils";
 import type { Experience } from "@/lib/types";
 
@@ -84,10 +85,12 @@ export function ExperienceFormDialog({ experience, trigger }: { experience?: Exp
             <Label>Description</Label>
             <Textarea {...register("description")} className="mt-1.5" />
           </div>
-          <div>
-            <Label>Image URL</Label>
-            <Input {...register("image_url")} className="mt-1.5" />
-          </div>
+          <ImageUpload
+            label="Image"
+            folder="experiences"
+            value={watch("image_url")}
+            onChange={(url) => setValue("image_url", url ?? "")}
+          />
           <div className="grid grid-cols-3 gap-3">
             <div>
               <Label>Default Price (₦)</Label>

@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { MapPin, Clock, Phone, Instagram, Facebook } from "lucide-react";
+import { MapPin, Clock, Phone, Instagram, Facebook, Youtube } from "lucide-react";
 import type { BusinessSettings } from "@/lib/types";
+import { TikTokIcon, XIcon } from "@/components/site/brand-icons";
 
 export function Footer({ settings }: { settings: BusinessSettings }) {
   const hoursOrder: (keyof BusinessSettings["opening_hours"])[] = [
@@ -21,13 +22,28 @@ export function Footer({ settings }: { settings: BusinessSettings }) {
           <p className="mt-2 text-sm text-muted-foreground">{settings.description}</p>
           <div className="mt-4 flex gap-3">
             {settings.instagram_url && (
-              <a href={settings.instagram_url} target="_blank" rel="noopener noreferrer" className="rounded-full bg-background p-2 hover:bg-primary hover:text-primary-foreground">
+              <a href={settings.instagram_url} target="_blank" rel="noopener noreferrer" className="rounded-full bg-background p-2 hover:bg-primary hover:text-primary-foreground" aria-label="Instagram">
                 <Instagram className="h-4 w-4" />
               </a>
             )}
             {settings.facebook_url && (
-              <a href={settings.facebook_url} target="_blank" rel="noopener noreferrer" className="rounded-full bg-background p-2 hover:bg-primary hover:text-primary-foreground">
+              <a href={settings.facebook_url} target="_blank" rel="noopener noreferrer" className="rounded-full bg-background p-2 hover:bg-primary hover:text-primary-foreground" aria-label="Facebook">
                 <Facebook className="h-4 w-4" />
+              </a>
+            )}
+            {settings.tiktok_url && (
+              <a href={settings.tiktok_url} target="_blank" rel="noopener noreferrer" className="rounded-full bg-background p-2 hover:bg-primary hover:text-primary-foreground" aria-label="TikTok">
+                <TikTokIcon className="h-4 w-4" />
+              </a>
+            )}
+            {settings.youtube_url && (
+              <a href={settings.youtube_url} target="_blank" rel="noopener noreferrer" className="rounded-full bg-background p-2 hover:bg-primary hover:text-primary-foreground" aria-label="YouTube">
+                <Youtube className="h-4 w-4" />
+              </a>
+            )}
+            {settings.twitter_url && (
+              <a href={settings.twitter_url} target="_blank" rel="noopener noreferrer" className="rounded-full bg-background p-2 hover:bg-primary hover:text-primary-foreground" aria-label="X (Twitter)">
+                <XIcon className="h-4 w-4" />
               </a>
             )}
           </div>

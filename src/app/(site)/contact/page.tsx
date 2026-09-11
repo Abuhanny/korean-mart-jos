@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { MapPin, Phone, Mail, MessageCircle, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, MessageCircle, Clock, Instagram, Facebook, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getSettings } from "@/lib/data/settings";
 import { whatsappGeneralContactLink } from "@/lib/whatsapp";
+import { TikTokIcon, XIcon } from "@/components/site/brand-icons";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -84,6 +85,39 @@ export default async function ContactPage() {
             <MessageCircle className="h-4 w-4" /> Chat on WhatsApp
           </a>
         </Button>
+
+        {(settings.instagram_url || settings.facebook_url || settings.tiktok_url || settings.youtube_url || settings.twitter_url) && (
+          <div className="mt-6">
+            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-foreground/70">Follow Us</h3>
+            <div className="flex gap-3">
+              {settings.instagram_url && (
+                <a href={settings.instagram_url} target="_blank" rel="noopener noreferrer" className="rounded-full border border-border/60 p-2.5 hover:bg-accent" aria-label="Instagram">
+                  <Instagram className="h-4 w-4" />
+                </a>
+              )}
+              {settings.facebook_url && (
+                <a href={settings.facebook_url} target="_blank" rel="noopener noreferrer" className="rounded-full border border-border/60 p-2.5 hover:bg-accent" aria-label="Facebook">
+                  <Facebook className="h-4 w-4" />
+                </a>
+              )}
+              {settings.tiktok_url && (
+                <a href={settings.tiktok_url} target="_blank" rel="noopener noreferrer" className="rounded-full border border-border/60 p-2.5 hover:bg-accent" aria-label="TikTok">
+                  <TikTokIcon className="h-4 w-4" />
+                </a>
+              )}
+              {settings.youtube_url && (
+                <a href={settings.youtube_url} target="_blank" rel="noopener noreferrer" className="rounded-full border border-border/60 p-2.5 hover:bg-accent" aria-label="YouTube">
+                  <Youtube className="h-4 w-4" />
+                </a>
+              )}
+              {settings.twitter_url && (
+                <a href={settings.twitter_url} target="_blank" rel="noopener noreferrer" className="rounded-full border border-border/60 p-2.5 hover:bg-accent" aria-label="X (Twitter)">
+                  <XIcon className="h-4 w-4" />
+                </a>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

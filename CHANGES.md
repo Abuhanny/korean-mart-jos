@@ -1,46 +1,32 @@
-# Drag-and-Drop Image Upload — What Changed
+# Add TikTok, YouTube, X (Twitter) Social Links — What Changed
 
 ## How to apply
 
-1. Copy all 8 files into your project at the same paths, overwriting the 6 existing form files.
-2. Run `supabase/migrations/0004_storage.sql` in your Supabase SQL Editor (after 0001, 0002, 0003).
-   This creates a public `media` Storage bucket with a 5MB file size limit, restricted to JPEG/PNG/WEBP/GIF,
-   and sets up permissions so only logged-in staff/admin can upload — anyone can view (required for images to
-   show on the public site).
-3. No new environment variables. Redeploy after applying.
+1. Copy all 8 files into your project at the same paths (1 new, 7 modified).
+2. Run `supabase/migrations/0005_social_links.sql` in Supabase SQL Editor (after 0001–0004).
+3. No new environment variables. Redeploy when ready.
 
-## What changed for admins
+## What's new
 
-Every place you previously had to paste an image URL now has a proper upload area instead:
-
-- **Products**, **Categories**, **Experiences**, **Activities**, **Promotions** — each admin form
-- **Settings** → Homepage hero image
-
-You can either:
-- **Drag and drop** an image file onto the box, or
-- **Click the box** to open your device's file picker, or
-- Click **"Paste a URL instead"** if you'd rather link to an image hosted elsewhere (kept as a fallback for
-  flexibility)
-
-Images upload directly to Supabase Storage, and the resulting public URL is filled in automatically. A preview
-shows once uploaded, with a small × button to remove/replace it.
-
-## Validation
-
-- Only JPEG, PNG, WEBP, and GIF are accepted — enforced both in the browser (immediate feedback) and at the
-  storage bucket level (so it can't be bypassed even by someone crafting a direct API request).
-- Max file size: 5MB, same enforcement at both levels.
+- **Settings** page now has fields for TikTok, YouTube, and X (Twitter) URLs, alongside the existing
+  Instagram and Facebook fields.
+- The **footer** (every page) and the **Contact page** now show icons for all five platforms — only the ones
+  you've actually filled in appear, so leaving a field blank just hides that icon rather than showing a broken
+  link.
+- TikTok and X don't have official icons in the icon library this project uses (lucide-react), so
+  `src/components/site/brand-icons.tsx` adds two small custom SVG icons for those two; Instagram, Facebook, and
+  YouTube use the existing icon library as before.
 
 ## Files in this update
 
 **New:**
-- `supabase/migrations/0004_storage.sql` — Storage bucket + access policies
-- `src/components/admin/image-upload.tsx` — the reusable upload component
+- `supabase/migrations/0005_social_links.sql`
+- `src/components/site/brand-icons.tsx`
 
-**Modified (each just swaps a plain "Image URL" text field for `<ImageUpload />`):**
-- `src/components/admin/product-form-dialog.tsx`
-- `src/components/admin/category-form-dialog.tsx`
-- `src/components/admin/experience-form-dialog.tsx`
-- `src/components/admin/activity-form-dialog.tsx`
-- `src/components/admin/promotion-components.tsx`
-- `src/components/admin/settings-form.tsx`
+**Modified:**
+- `src/lib/types.ts` — added `tiktok_url`, `youtube_url`, `twitter_url` fields
+- `src/lib/data/settings.ts` — fallback defaults for the new fields
+- `src/lib/validations/admin.ts` — validation for the new fields
+- `src/components/admin/settings-form.tsx` — new input fields in the Settings page
+- `src/components/site/footer.tsx` — shows all 5 social icons when set
+- `src/app/(site)/contact/page.tsx` — new "Follow Us" section with all 5 icons

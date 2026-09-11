@@ -21,6 +21,9 @@ const FALLBACK: BusinessSettings = {
   },
   instagram_url: null,
   facebook_url: null,
+  tiktok_url: null,
+  youtube_url: null,
+  twitter_url: null,
   hero_title: "Korean food, groceries & experiences in Jos.",
   hero_subtitle:
     "Shop Korean groceries, cook and eat ramen at the mart, and join fun Korean culture activities — all in one place.",

@@ -40,6 +40,9 @@ export interface BusinessSettings {
   opening_hours: OpeningHours;
   instagram_url: string | null;
   facebook_url: string | null;
+  tiktok_url: string | null;
+  youtube_url: string | null;
+  twitter_url: string | null;
   hero_title: string;
   hero_subtitle: string;
   hero_image_url: string | null;

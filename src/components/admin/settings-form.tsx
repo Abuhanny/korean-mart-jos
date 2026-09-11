@@ -39,6 +39,9 @@ export function SettingsForm({ settings, isAdmin }: { settings: BusinessSettings
       google_maps_url: settings.google_maps_url ?? "",
       instagram_url: settings.instagram_url ?? "",
       facebook_url: settings.facebook_url ?? "",
+      tiktok_url: settings.tiktok_url ?? "",
+      youtube_url: settings.youtube_url ?? "",
+      twitter_url: settings.twitter_url ?? "",
       hero_title: settings.hero_title,
       hero_subtitle: settings.hero_subtitle,
       hero_image_url: settings.hero_image_url ?? "",
@@ -96,11 +99,23 @@ export function SettingsForm({ settings, isAdmin }: { settings: BusinessSettings
           </div>
           <div>
             <Label>Instagram URL</Label>
-            <Input {...register("instagram_url")} className="mt-1.5" />
+            <Input {...register("instagram_url")} className="mt-1.5" placeholder="https://instagram.com/koreamartjos" />
           </div>
           <div>
             <Label>Facebook URL</Label>
-            <Input {...register("facebook_url")} className="mt-1.5" />
+            <Input {...register("facebook_url")} className="mt-1.5" placeholder="https://facebook.com/koreamartjos" />
+          </div>
+          <div>
+            <Label>TikTok URL</Label>
+            <Input {...register("tiktok_url")} className="mt-1.5" placeholder="https://tiktok.com/@koreamartjos" />
+          </div>
+          <div>
+            <Label>YouTube URL</Label>
+            <Input {...register("youtube_url")} className="mt-1.5" placeholder="https://youtube.com/@koreamartjos" />
+          </div>
+          <div>
+            <Label>X (Twitter) URL</Label>
+            <Input {...register("twitter_url")} className="mt-1.5" placeholder="https://x.com/koreamartjos" />
           </div>
           <div className="sm:col-span-2">
             <Label>Business Description</Label>
